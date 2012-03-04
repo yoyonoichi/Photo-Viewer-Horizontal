@@ -3,30 +3,30 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Photo Gallery - Horizontal</title>
+
+<link href='http://fonts.googleapis.com/css?family=Ruluko' rel='stylesheet' type='text/css'>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="../js/jquery.mousewheel.min.js"></script>
 <script src="../horizontalGallery.1.1.js"></script>
 <script>
 $(document).ready( function() {
-	
-	$('#horizontal_gallery').horizontalGallery(500, new Array('assets/ajax-loader.gif',32,32));
-	
+	$('#photogallery').horizontalGallery(500, ['assets/ajax-loader.gif',32,32]);
 });
 </script>
 <style>
 body {
-	position:relative; width:100%; margin:0; text-align:center;
+	position:relative; width:100%; margin:0; text-align:center; background-color:#eee; font-family: 'Ruluko', sans-serif; line-height:1.4em;
 }
 #wrapper {
 	width:800px; margin:0 auto; text-align:left;	
 }
-#horizontal_gallery {
+#photogallery {
 	width:800px; height:220px; list-style:none; padding:0; margin:0; overflow:auto;
 }
-#horizontal_gallery li {
+#photogallery li {
 	float:left; margin:0; padding:0;
 }
-#horizontal_gallery li img {
+#photogallery li img {
 	border:none; -moz-box-shadow:2px 3px 3px rgba(0,0,0,0.3);
 }
 </style>
@@ -34,10 +34,10 @@ body {
 
 <body>
 <div id="wrapper">
-	<div id="content" style="width:800px; height:50px;background-color:#ccc;">Photo Gallery - Horizontal</div>
+	<div id="content" style="width:800px; height:300px;"></div>
 
-	<ul id="horizontal_gallery">
-    	<li><a href="assets/photo1L.jpg" target="_blank"><img src="assets/photo1S.jpg" alt="Photo1" showdesc="true" imgtitle="Road Sign in Italy" imgdesc="text text text text. text text text text <br/><br/> text text text text."/></a></li>
+	<ul id="photogallery">
+    	<li><a href="assets/photo1L.jpg" target="_blank"><img src="assets/photo1S.jpg" alt="Photo1" showdesc="true" imgtitle="Road Sign in Italy" imgdesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis luctus sapien a ipsum auctor luctus. Maecenas eleifend accumsan sollicitudin. Curabitur sit amet lectus magna. Nullam malesuada, nulla at elementum luctus, erat felis scelerisque ipsum, in mollis nibh magna vitae mauris. Vestibulum lorem odio, gravida eu dapibus et, placerat eu arcu. Pellentesque velit ante, pharetra tincidunt tempus a, imperdiet sed sapien. Sed nunc quam, blandit ornare lobortis a, varius sit amet metus. Aenean adipiscing urna non tellus dapibus lobortis. Cras augue neque, tristique a adipiscing non, hendrerit in sem. Donec vestibulum luctus mollis. Curabitur gravida mauris sit amet mauris molestie elementum interdum erat varius. Ut non nunc eros, id gravida felis. Integer in sagittis est. Morbi nisi nibh, pellentesque ac auctor id, eleifend in nunc. Curabitur eget laoreet erat.<br/><br/>Nam vehicula justo ut arcu ultrices hendrerit sit amet non mauris. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque non nibh urna. Mauris suscipit porttitor euismod. Nunc blandit gravida tincidunt. Aliquam mi orci, porta vel ullamcorper non, condimentum non libero. Duis mollis interdum dolor sit amet congue. Proin adipiscing molestie elit quis ullamcorper. Proin tristique metus sit amet nisl scelerisque sit amet ornare lectus suscipit. In sed lacinia ligula. Nullam a lorem nulla, in malesuada massa. Nulla a dapibus diam. Ut libero est, malesuada ut pretium ac, rutrum scelerisque arcu. Integer pellentesque mi eget dolor commodo id pulvinar enim gravida. Aliquam auctor eros et arcu tincidunt congue. "/></a></li>
         <li><a href="assets/photo2L.jpg" target="_blank"><img src="assets/photo2S.jpg" alt="Photo2"/></a></li>
     	<li><a href="assets/photo3L.jpg" target="_blank"><img src="assets/photo3S.jpg" alt="Photo3"/></a></li>
     	<li><a href="assets/photo4L.jpg" target="_blank"><img src="assets/photo4S.jpg" alt="Photo4"/></a></li>
@@ -48,6 +48,9 @@ body {
     	<li><a href="assets/photo4L.jpg" target="_blank"><img src="assets/photo4S.jpg" alt="Photo4"/></a></li>
     	<li><a href="assets/photo5L.jpg" target="_blank"><img src="assets/photo5S.jpg" alt="Photo5"/></a></li>
     </ul>
+    
+    <div id="content" style="width:800px; height:550px;"></div>
+
 </div>
 </body>
 </html>

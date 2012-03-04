@@ -1,27 +1,3 @@
-/****** USAGE *******
-Requirements:
-	jQuery
-	jQuery.mousewheel
-
-HTML code
-	<ul id="unique_id">
-		<li><a href="path/to/largeImage" target="_blank">
-			<img src="path/to/thumbnail"/>
-		</a></li>
-		<li>...</li>
-		<li>...</li>
-	</ul>
-	
-	If you have a description for a image, add the following attributes.
-	<img src="path/to/thumbnail" showdesc="true" imgtitle="Image title" imgdesc="Image description"/>
-	
-Javscript code
-	$('#unique_id').horizontalGallery(duration, loaderSettings);
-		Parameters (option)
-		duration: int / time to enlarge thumbnail (ms)
-		loaderSettings: Array / [0]... Path to the loader image (string) [1]... loader width (int) [2]... loader height (int)
-	
-*******************/
 (function($) {
 	var showLarge = false;
 	
@@ -30,8 +6,8 @@ Javscript code
 		var frame = this;
 		var frameW = frame.width();
 		var total;
-		var sizesW = new Array();
-		var sizesH = new Array();
+		var sizesW = [];
+		var sizesH = [];
 		var totalW;
 		var inner;
 		
@@ -149,6 +125,12 @@ Javscript code
 		}
 	}
 	
+	function onMouseWheelHandler(e) {
+		if(!e) e = window.event;
+		e.preventDefault();
+		return false;
+	}
+			
 	////////////////////////////////
 	//BLACK BOX IMAGE PLUGIN//
 	////////////////////////////////
@@ -156,7 +138,7 @@ Javscript code
 	
 		if(loaderImg && loaderWidth && loaderHeight) {
 			this.loaderBool = true;
-			this.loaders = new Array(loaderImg, loaderWidth, loaderHeight);
+			this.loaders = [loaderImg, loaderWidth, loaderHeight];
 		}
 		
 		this.setting = function(imagefile, descHTML) {
@@ -189,8 +171,8 @@ Javscript code
 			td.append(contentDiv);
 			contentbox.append($('<tr></tr>')).find('tr').append(td);
 			
-			var closebtn = $('<div>X</div>').css({'padding':'5px 10px','font-size':'25px','font-weight':'bold','font-family':'Arial, sans-serif','color':'#fff','cursor':'pointer'});	
-			var closebox = $('<div></div>').attr('id','black_box_close_box').css({'position':'absolute','top':scrollTop+10+'px','left':'10px','border':'2px solid #fff','border-radius':'10px','-moz-border-radius':'10px','-webkit-border-radius':'10px','-o-border-radius':'10px','background-color':'#000'}).append(closebtn);
+			var closebtn = '<div style="font-size:30px;color:#fff;padding:9px 12px 5px 12px;">X</div>';
+			var closebox = $('<div></div>').attr('id','black_box_close_box').css({position:'absolute',top:scrollTop+'px',left:0,opacity:0.8,cursor:'pointer',fontFamily:'sans-serif',fontWeight:'bold',backgroundColor:'#000'}).html(closebtn);
 				
 			//IMAGE LOADING FUNCTION	
 			var imgObject = new Image();
@@ -226,25 +208,11 @@ Javscript code
 					});
 				}
 			}
-			
-			if(jQuery().mousewheel) {
-				blackbox.bind('mousewheel', function(evt, dlt) {
-					evt.stopPropagation();
-					evt.preventDefault();
-					return false;
-				});
-				contentbox.bind('mousewheel', function(evt, dlt) {
-					evt.stopPropagation();
-					evt.preventDefault();
-					return false;
-				});
-				closebox.bind('mousewheel', function(evt, dlt) {
-					evt.stopPropagation();
-					evt.preventDefault();
-					return false;
-				});
+						
+			window.onmousewheel = document.onmousewheel = onMouseWheelHandler;
+			if(window.addEventListener) {
+				window.addEventListener('DOMMouseScroll', onMouseWheelHandler, false);
 			}
-			
 			$('body').append(blackbox).append(contentbox).append(closebox);	
 			
 			//CLOSE BLACK BOX FUNCTION
@@ -258,11 +226,11 @@ Javscript code
 			});
 			
 			function closeHandler() {
-				if(jQuery().mousewheel) {
-					blackbox.unbind('mousewheel');
-					contentbox.unbind('mousewheel');
-					closebox.unbind('mousewheel');
+				if(window.removeEventListener) {
+					window.removeEventListener('DOMMouseScroll', onMouseWheelHandler);
 				}
+				window.onmousewheel = document.onmousewheel = null;
+				
 				closebox.unbind('click');
 				closebox.unbind('touchstart');
 				
@@ -350,7 +318,7 @@ Javscript code
 						h = curH;
 					}
 				}
-				return new Array(Math.round(w), Math.round(h));
+				return [Math.round(w), Math.round(h)];
 			}
 		}
 	}
