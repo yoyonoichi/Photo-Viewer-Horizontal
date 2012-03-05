@@ -127,7 +127,11 @@
 	
 	function onMouseWheelHandler(e) {
 		if(!e) e = window.event;
-		e.preventDefault();
+		if(e.preventDefault)
+			e.preventDefault();
+		else
+			e.returnValue = false;
+			e.cancelBubble = true;
 		return false;
 	}
 			
