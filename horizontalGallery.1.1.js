@@ -127,11 +127,12 @@
 	
 	function onMouseWheelHandler(e) {
 		if(!e) e = window.event;
-		if(e.preventDefault)
+		if(e.preventDefault) {
 			e.preventDefault();
-		else
+		}else {
 			e.returnValue = false;
 			e.cancelBubble = true;
+		}
 		return false;
 	}
 			
