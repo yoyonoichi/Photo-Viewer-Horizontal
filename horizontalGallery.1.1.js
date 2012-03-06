@@ -4,6 +4,7 @@
 	$.fn.horizontalGallery = function(duration, loaderSettings) {
 		if(!duration) duration = 500;
 		var frame = this;
+		var frameID = this.attr('id');
 		var frameW = frame.width();
 		var total;
 		var sizesW = [];
@@ -57,23 +58,24 @@
 						$(this).find('a').click( function() {
 							mouseClickHandler(index, $(this), topMargin);
 						});
-						
 						//FOR MOBILE DEVICE
-						$(this).bind('touchstart', function(e) {
-							e.preventDefault();
-							mouseOverHandler(index, $(this));
-						}, false);
-						$(this).bind('touchend', function(e) {
-							e.preventDefault();
-							mouseOutHandler(index, $(this), topMargin);
-						}, false);
-						$(this).bind('touchmove', function(e) {
-							if(!showLarge) {
-								showLarge = true;
+						if('ontouchstart' in document.documentElement) {
+							this.addEventListener('touchstart', function(e) {
 								e.preventDefault();
-								mouseClickHandler(index, $(this).find('a'), topMargin);
-							}
-						}, false);
+								mouseOverHandler(index, $(this));
+							}, false);				
+							this.addEventListener('touchend', function(e) {
+								e.preventDefault();
+								mouseOutHandler(index, $(this), topMargin);
+							}, false);
+							this.addEventListener('touchmove', function(e) {
+								if(!showLarge) {
+									showLarge = true;
+									e.preventDefault();
+									mouseClickHandler(index, $(this).find('a'), topMargin);
+								}
+							}, false);											
+						}
 					}
 				});
 				
